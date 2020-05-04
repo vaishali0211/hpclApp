@@ -1,0 +1,30 @@
+// ion-content {
+//     --background: rgb(176, 232, 249);
+// }
+// ion-toolbar {
+//     --background: #002b6b;
+// }
+ion-item {
+    --background: #002b6b;
+    border-radius: 0px;
+    color: white;
+}
+
+font-color {
+    font-family: "Raleway";
+    color: white;
+}
+
+ion-chip {
+    color: white;
+}
+
+// element.style,
+// .okay {
+//     background-color: #002b6b;
+// }
+.alert-button-inner.sc-ion-alert-md {
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    color: crimson;
+}

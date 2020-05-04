@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Edit Profile</ion-title>
+        <ion-buttons slot="end">
+            <ion-button icon-only (click)="logout()">
+                <ion-icon name="log-out"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="center-card" *ngFor="let editprofile of editprofiles">
+        <!-- <ion-list> -->
+        <ion-item>
+            {{editprofile.delivery_area}}
+        </ion-item>
+        <ion-item>
+            {{editprofile.report_manager}}
+        </ion-item>
+        <!-- </ion-list> -->
+        <ion-item>
+            <ion-label position="floating"> Name</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <!-- <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.name">
+                    <div class="error-message" *ngIf="editprofile.get('name').hasError(validation.type) && (editprofile.get('name').dirty || editprofile.get('name').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div> -->
+        <ion-item>
+            <ion-label position="floating">Phone No</ion-label>
+            <ion-input type="tel"></ion-input>
+        </ion-item>
+        <!-- <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.phone">
+                    <div class="error-message" *ngIf="editprofile.get('phone').hasError(validation.type) && (editprofile.get('phone').dirty || editprofile.get('phone').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div> -->
+
+        <ion-item>
+            <ion-label position="floating">Address_1</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Address_2</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button fill="solid" expand="block" shape="round" color="primary" routerLink="/menu">Save</ion-button>
+            </ion-col>
+        </ion-row>
+        <!-- </form> -->
+    </ion-card>
+    <!-- </ion-card-content> -->
+</ion-content>

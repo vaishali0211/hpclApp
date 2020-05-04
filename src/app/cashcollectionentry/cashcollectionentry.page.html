@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <h4>Cash collection Entry</h4>
+        <!-- <ion-title>CashCollection Entry</ion-title> -->
+        <ion-buttons slot="end">
+            <ion-button icon-only (click)="logout()" fill="clear">
+                <ion-icon name="log-out"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="center-card" *ngFor="let cashcollection of cashcollectionEntry">
+        <!-- <ion-list> -->
+        <ion-item>
+            {{cashcollection.consumer_no}}
+        </ion-item>
+        <ion-item>
+            {{cashcollection.kg_cylinder}}
+        </ion-item>
+        <!-- </ion-list> -->
+        <form [formGroup]="cc_form" (ngSubmit)="submitForm(cc_form.value)">
+            <ion-item>
+                <ion-label position="floating">Amount</ion-label>
+                <ion-input formControlName="amount" type="amount"></ion-input>
+            </ion-item>
+            <ion-button fill="solid" color="light" shape="round" fill="outline" expand="block" routerLink="/menu">Submit</ion-button>
+        </form>
+    </ion-card>
+</ion-content>

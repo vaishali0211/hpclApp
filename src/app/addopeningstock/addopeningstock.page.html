@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <h4>Add opening stock</h4>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button icon-only (click)="logout()">
+                <ion-icon name="log-out" fill="clear"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="center-card">
+        <ion-item>
+            <ion-label>Type of cylinder </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>14.5KG </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>12.5KG </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>10.5KG </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>16.5KG </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Quantity </ion-label>
+            <ion-input text="quantity"></ion-input>
+        </ion-item>
+        <ion-row>
+            <ion-col size="12">
+                <ion-button color="light" fill="outline" shape="round" expand="block" type="submit" routerLink="/menu">Submit</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-content>

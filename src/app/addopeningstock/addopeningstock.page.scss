@@ -1,0 +1,27 @@
+ion-toolbar {
+    --background: #fff;
+}
+
+.center-card {
+    margin: auto;
+    --background: #002b6b;
+    background-size: auto;
+    background-color: #002b6b;
+    background-position: 90% center;
+    --color: #fff;
+    width: 80vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    right: 0;
+    left: 0;
+    border-radius: 12px;
+    ion-card-title,
+    ion-item {
+        --background: transparent;
+        --color: #fff;
+    }
+}

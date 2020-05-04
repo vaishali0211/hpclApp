@@ -1,0 +1,111 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Add Order</ion-title>
+        <ion-buttons slot="end">
+            <ion-button icon-only (click)="logout()">
+                <ion-icon name="log-out" fill="clear"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="center-card">
+        <form [formGroup]="addOrder_form" (ngSubmit)="submitForm(addOrder_form.value)">
+            <!-- <ion-item>
+                <ion-label position="floating">Name</ion-label>
+                <ion-input formControlName="name" type="text" required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let addOrder of  addOrder_messages.name">
+                    <div class="error-message" *ngIf=" addOrder_form.get('name').hasError( addOrder.type) && ( addOrder_form.get('name').dirty ||  addOrder_form.get('name').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div> -->
+            <ion-item lines="full">
+                <ion-label position="floating">Consumer No</ion-label>
+                <ion-input formControlName="consumer_no" type="consumer_no" required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let  addOrder of  addOrder_messages.Consumer_no">
+                    <div class="error-message" *ngIf=" addOrder_form.get('consumer_no').hasError( addOrder.type) && ( addOrder_form.get('consumer_no').dirty ||  addOrder_form.get('consumer_no').touched)">
+                        <ion-icon consumer_no="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <ion-item>
+                <ion-label>Quantity</ion-label>
+                <ion-select value=" cylinder" okText="Okay" cancelText="Cancle">
+                    <ion-select-option value=" cylinder">14.9 kg</ion-select-option>
+                    <ion-select-option value="cylinder">13.9kg</ion-select-option>
+                    <ion-select-option value="cylinder">12.5 kg</ion-select-option>
+                    <ion-select-option value="cylinder">16.8kg</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    Upload Photo
+                </ion-label>
+                <ion-button (click)="takePicture()">
+                    <ion-icon name="camera"></ion-icon>
+                </ion-button>
+            </ion-item>
+            <ion-item>
+                <ion-label>Delivery</ion-label>
+                <ion-checkbox formControlName="delivery"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Empty Collected</ion-label>
+                <ion-checkbox formControlName="emptycollected"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Defective</ion-label>
+                <ion-checkbox formControlName="defective"></ion-checkbox>
+            </ion-item>
+            <!-- <ion-item lines="full">
+                <ion-label position="floating">KG Cylinder RS</ion-label>
+                <ion-input type="text" formControlName="kg_cylinder_rs" required></ion-input>
+            </ion-item> -->
+            <!-- <ion-item lines="full">
+                <ion-label position="floating">Address_1</ion-label>
+                <ion-input type="text" formControlName="address_1" required>
+                </ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label position="floating">Address_2</ion-label>
+                <ion-input type="text" formControlName="address_2" required></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label position="floating">Area
+                </ion-label>
+                <ion-input type="text" formControlName="area" required></ion-input>
+            </ion-item> -->
+            <ion-button class="btn-unique" fill="clear" expand="block" fill="outline" shape="round" type="submit" routerLink="/menu">Sumbit</ion-button>
+        </form>
+    </ion-card>
+</ion-content>
+<!-- <ion-item lines="full">
+                <ion-label position="floating">Phone No</ion-label>
+                <ion-input formControlName="phone" type="text" required></ion-input>
+            </ion-item>
+            <div class="addOrder-errors">
+                <ng-container *ngFor="let addOrder of  addOrder_messages.phone">
+                    <div class="error-message" *ngIf=" addOrder_form.get('phone').hasError(addOrder.type) && ( addOrder_form.get('phone').dirty ||  addOrder_form.get('phone').touched)">
+                        <ion-icon phone="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div> -->
+<!-- <ion-item lines="full">
+                <ion-label position="floating">Subsidy Consume</ion-label>
+                <ion-input formControlName="subsidy_consume" type="subsidy_consume" required></ion-input>
+            </ion-item>
+            <div class="addOrder-errors">
+                <ng-container *ngFor="let addOrder of  addOrder_messages.subsidy_consume">
+                    <div class="error-message" *ngIf=" addOrder_form.get('subsidy_consume').hasError(addOrder.type) && ( addOrder_form.get('subsidy_consume').dirty ||  addOrder_form.get('subsidy_consume').touched)">
+                        <ion-icon subsidy_consume="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div> -->

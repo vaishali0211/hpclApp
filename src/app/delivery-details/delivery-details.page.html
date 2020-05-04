@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <ion-icon name="close">
+                </ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Delivery-Details</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-card class="center-card">
+        <!-- <ion-list> -->
+        <ion-item-group>
+            <!-- <ion-item-divider>
+                    <ion-label>Delivery Details</ion-label>
+                </ion-item-divider> -->
+            <ion-item>
+                <ion-label>
+                    <p class="note"> Name</p>
+                    <h3>{{modalData.name}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note">Consumer No</p>
+                    <h3>{{modalData.consumer_no}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note"> Phone No</p>
+                    <h3>{{modalData.phone_no}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note"> Address_1</p>
+                    <h3>{{modalData.address_2}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note"> Address_2</p>
+                    <h3>{{modalData.address_2}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note"> Area</p>
+                    <h3>{{modalData.area}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note">subsidy Consume</p>
+                    <h3>{{modalData.subsidy_consume}}</h3>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    <p class="note"> KG Cylinder.RS</p>
+                    <h3>{{modalData.kg_cylinder_rs}}</h3>
+                </ion-label>
+            </ion-item>
+        </ion-item-group>
+        <!-- <ion-button fill="solid" expand="small" shape="Sqaure">
+            Online
+        </ion-button>
+        <ion-button fill="solid" expand="small" shape="sqaure" (click)="navigate('cashcollectionentry')">
+            Offline
+        </ion-button> -->
+        <!-- </ion-list> -->
+    </ion-card>
+    <ion-col size="12">
+        <ion-button (click)="closeModal()" fill="outline" expand="block" class="btn" size="small" shape="round">Close</ion-button>
+    </ion-col>
+</ion-content>
