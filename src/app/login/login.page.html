@@ -6,12 +6,12 @@
         <ion-card-content>
             <form [formGroup]='loginGroup' (ngSubmit)="Onsubmit(loginGroup.value)">
                 <ion-item>
-                    <ion-label position="floating">Phone No </ion-label>
-                    <ion-input formControlName="phone" type="tel" required></ion-input>
+                    <ion-label position="floating">Email Id </ion-label>
+                    <ion-input formControlName="email" type="tel" required></ion-input>
                 </ion-item>
                 <div class="validation-errors">
-                    <ng-container *ngFor="let validation of validation_messages.phone">
-                        <div class="error-message" *ngIf="loginGroup.get('phone').hasError(validation.type) && (loginGroup.get('phone').dirty || loginGroup.get('phone').touched)">
+                    <ng-container *ngFor="let validation of validation_messages.email">
+                        <div class="error-message" *ngIf="loginGroup.get('email').hasError(validation.type) && (loginGroup.get('email').dirty || loginGroup.get('email').touched)">
                             <ion-icon name="information-circle-outline"></ion-icon> {{ validation.message }}
                         </div>
                     </ng-container>

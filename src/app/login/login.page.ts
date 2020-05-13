@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { AlertController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
+import { restService } from '../rest.service.service';
+
 
 
 @Component({
@@ -30,6 +32,7 @@ export class LoginPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder ,
     public router: Router,
+    private api: restService,
     public alert: AlertController,
     public auth: AuthenticationService
   ) {}
@@ -37,10 +40,13 @@ export class LoginPage implements OnInit {
   ngOnInit() {
 
     this.loginGroup = this.formBuilder.group({
-      phone: new FormControl('', Validators.compose([
-        Validators.required, 
-        Validators.pattern('^[7-9][0-9]{9}$'),
-      ])),
+      email : new FormControl('', [
+        Validators.required,
+      ]),
+      // phone: new FormControl('', Validators.compose([
+      //   Validators.required, 
+      //   Validators.pattern('^[7-9][0-9]{9}$'),
+      // ])),
       password: new FormControl('',Validators.compose([
         Validators.required, 
       ])),
@@ -48,41 +54,59 @@ export class LoginPage implements OnInit {
   }
   
   validation_messages = {
-    phone: [
-      { type: 'required', message: 'Phone No is required!' },
-      { type: 'pattern', message: 'Phone No must be 10 Digit without country Code!' },
+    'email': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'min', message: 'Email must be atleast 2 Character Long.' },
     ],
+    // phone: [
+    //   { type: 'required', message: 'Phone No is required!' },
+    //   { type: 'pattern', message: 'Phone No must be 10 Digit without country Code!' },
+    // ],
   
     password: [
       { type: 'required', message: 'Password is required.' }
     ],
   };
 
-  Onsubmit(values) {
-    let route: String;
-    let val: Array<any>;
-    val = values;
-    if(values.phone == '9999999999' && values.password == 'test@12'){
-      val['role'] = 'admin';
-      route = '/admin';
-    } else if(values.phone == '9999999998' && values. password == 'test@12'){
-      val['role'] = 'account';
-      route = '/account';
-    }
-    else if(values.phone == '9999999995' && values. password == 'test@12'){
-      val['role'] = 'customer';
-      route = '/customer';
-    }
-    else if(values.phone == '9999999990' && values. password == 'test@12'){
-      val['role'] = 'operator';
-      route = '/operator';
-    }
-    else if(values.phone == '9999999991' && values. password == 'test@12'){
-      val['role'] = 'deliveryboy';
-      route = '/menu';
-    }
+  // Onsubmit(values) {
+    Onsubmit(values) {
+      let params = "email="+values.email+"&password="+values.password;
+      this.api.User_login(params).subscribe(res => {
+      console.log(res);
+      if(res.success == false){
+        alert(res.message);
+      } else if(res.success == true) {
+        this.router.navigate(['/menu']);
+      } else {
+        alert(res.message);
+      }
+    }) 
 
-    this.auth.login(val,route);
+  
+    // let route: String;
+    // let val: Array<any>;
+    // val = values;
+    // if(values.phone == '9999999999' && values.password == 'test@12'){
+    //   val['role'] = 'admin';
+    //   route = '/admin';
+    // } else if(values.phone == '9999999998' && values. password == 'test@12'){
+    //   val['role'] = 'account';
+    //   route = '/account';
+    // }
+    // else if(values.phone == '9999999995' && values. password == 'test@12'){
+    //   val['role'] = 'customer';
+    //   route = '/customer';
+    // }
+    // else if(values.phone == '9999999990' && values. password == 'test@12'){
+    //   val['role'] = 'operator';
+    //   route = '/operator';
+    // }
+    // else if(values.phone == '9999999991' && values. password == 'test@12'){
+    //   val['role'] = 'deliveryboy';
+    //   route = '/menu';
+    // }
+  
+    // this.auth.login(val,route);
   }
 
   public togglePassword(){
@@ -109,7 +133,7 @@ export class LoginPage implements OnInit {
         {
           text: 'OK',
           handler: () => {
-             //this.router.navigateByUrl('/admin');
+             this.router.navigateByUrl('/menu');
          
           }
         }

@@ -16,6 +16,7 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { DeliveryDetailsPage } from './modal/delivery-details/delivery-details.page';
 import { Camera } from '@ionic-native/camera/ngx';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,6 +26,7 @@ import { Camera } from '@ionic-native/camera/ngx';
   entryComponents: [],
   imports: [
     BrowserModule, 
+    HttpClientModule, 
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
