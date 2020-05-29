@@ -12,8 +12,8 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <form [formGroup]="addOrder_form" (ngSubmit)="submitForm(addOrder_form.value)">
     <ion-card class="center-card">
-        <form [formGroup]="addOrder_form" (ngSubmit)="submitForm(addOrder_form.value)">
             <!-- <ion-item>
                 <ion-label position="floating">Name</ion-label>
                 <ion-input formControlName="name" type="text" required></ion-input>
@@ -57,14 +57,35 @@
                 <ion-label>Delivery</ion-label>
                 <ion-checkbox formControlName="delivery"></ion-checkbox>
             </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let  addOrder of  addOrder_messages.delivery">
+                    <div class="error-message" *ngIf=" addOrder_form.get('delivery').hasError( addOrder.type) && ( addOrder_form.get('delivery').dirty ||  addOrder_form.get('delivery').touched)">
+                        <ion-icon consumer_no="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div>
             <ion-item>
                 <ion-label>Empty Collected</ion-label>
                 <ion-checkbox formControlName="emptycollected"></ion-checkbox>
             </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let  addOrder of  addOrder_messages.emptycollected">
+                    <div class="error-message" *ngIf=" addOrder_form.get('emptycollected').hasError( addOrder.type) && ( addOrder_form.get('emptycollected').dirty ||  addOrder_form.get('emptycollected').touched)">
+                        <ion-icon consumer_no="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div>
             <ion-item>
                 <ion-label>Defective</ion-label>
                 <ion-checkbox formControlName="defective"></ion-checkbox>
             </ion-item>
+            <div class="validation-errors">
+                <ng-container *ngFor="let  addOrder of  addOrder_messages.defective">
+                    <div class="error-message" *ngIf=" addOrder_form.get('defective').hasError( addOrder.type) && ( addOrder_form.get('defective').dirty ||  addOrder_form.get('defective').touched)">
+                        <ion-icon consumer_no="information-circle-outline"></ion-icon> {{ addOrder.message }}
+                    </div>
+                </ng-container>
+            </div>
             <!-- <ion-item lines="full">
                 <ion-label position="floating">KG Cylinder RS</ion-label>
                 <ion-input type="text" formControlName="kg_cylinder_rs" required></ion-input>
@@ -83,9 +104,9 @@
                 </ion-label>
                 <ion-input type="text" formControlName="area" required></ion-input>
             </ion-item> -->
-            <ion-button class="btn-unique" fill="clear" expand="block" fill="outline" shape="round" type="submit" routerLink="/menu">Sumbit</ion-button>
-        </form>
-    </ion-card>
+            <ion-button class="btn-unique" fill="clear" expand="block" fill="outline" shape="round" type="submit" [disabled]="!addOrder_form.valid">Sumbit</ion-button>
+</ion-card>
+</form>
 </ion-content>
 <!-- <ion-item lines="full">
                 <ion-label position="floating">Phone No</ion-label>

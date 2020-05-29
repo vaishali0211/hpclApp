@@ -4,9 +4,9 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
         <!-- <ion-title>Todays Delivery</ion-title> -->
-        <h3>Todays Delivery</h3>
+        <h3 class="main">Todays Delivery</h3>
         <ion-buttons slot="end">
-            <ion-button icon-only (click)="logout()">
+            <ion-button icon-only (click)="logout()" fill="clear">
                 <ion-icon name="log-out" fill="clear"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -20,7 +20,7 @@
                 <ion-row>
                     <ion-label>
                         <h3>con_no</h3>
-                        {{delivery.con_no}}
+                       <h3>{{delivery.con_no}}</h3> 
                     </ion-label>
                 </ion-row>
             </ion-item>

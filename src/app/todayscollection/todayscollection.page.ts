@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { Storage } from '@ionic/storage';
+import { restService } from '../rest.service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-todayscollection',
@@ -16,39 +18,72 @@ export class TodayscollectionPage implements OnInit {
   // cashCollectionRequest: any;
   // todaycashDelivery: {}[];
   listcashcollection:Array <any>;
-  cashcollection:any;
+  cashcollection:boolean;
   consumer_no:any;
-
-
+  cashCollectionRequest: any;
+  
+  isCCRequest: true;
+  false:any;
+  todaycashcollection:any;
   constructor(
    public router: Router,
-   public auth: AuthenticationService
+   public auth: AuthenticationService,
+   public api:restService,
+   public db: Storage,
+   public activeRoute: ActivatedRoute,
+   private http: HttpClient
   ) { }
+  //   this.listcashcollection=[{
+  //     consumer_no:' 24563' ,kg_cylinder:'14.5',amount:'750',location:'virar'
+  //    },
+  //    {
+  //      consumer_no:' 23420' ,kg_cylinder:'15.5',amount:'850',location:'virar'
+  //    },
+  //    {
+  //      consumer_no:' 21555' ,kg_cylinder:'16.5',amount:'950',location:'virar'
+  //    },
+  //    {
+  //      consumer_no:' 23556' ,kg_cylinder:'16.5',amount:'950',location:'virar'
+  //    },
+  //    {
+  //      consumer_no:' 20256' ,kg_cylinder:'16.5',amount:'950',location:'virar'
+  //    },
+  //    {
+  //      consumer_no:' 24568' ,kg_cylinder:'13.5',amount:'750',location:'virar'
+  //    }];
+  //  };
+  
 
   ngOnInit() {
+    
+
     // this.db.get('USER_INFO').then(res => {
     //  this.deliveryBoyId=res[0].delivery_boy_id;
-    this.listcashcollection=[{
-     consumer_no:' 24563' ,kg_cylinder:'14.5',amount:'750',location:'virar'
-    },
-    {
-      consumer_no:' 23420' ,kg_cylinder:'15.5',amount:'850',location:'virar'
-    },
-    {
-      consumer_no:' 21555' ,kg_cylinder:'16.5',amount:'950',location:'virar'
-    },
-    {
-      consumer_no:' 23556' ,kg_cylinder:'16.5',amount:'950',location:'virar'
-    },
-    {
-      consumer_no:' 20256' ,kg_cylinder:'16.5',amount:'950',location:'virar'
-    },
-    {
-      consumer_no:' 24568' ,kg_cylinder:'13.5',amount:'750',location:'virar'
-    }];
-  };
+    
 
-
+  // this.todaycashcollection=this.activeRoute.snapshot.paramMap.get("type");
+  //   console.log(this.todaycashcollection);
+    this.db.get('USER_INFO').then(res => {
+      let params= "payment_id"+"1"+"narration"+"Payment"+"type"+"Out"
+      +"enity_id"+"1"+"mode"+"cash"+"debit"+"120000.000"+"credit"+" "
+      +"balance"+"170000.000"+"credited_by"+"10"+"credited_at"+"2020-03-17 06:59:29"
+      +"updated_by"+"10"+"deleted_by"+"19"
+      +"deleted_at"+"2020-03-17 07:03:10"+"is_deleted"+"0";
+      this.api.Get_Payment_Entry(params).subscribe(resp=>{
+        console.log(resp)
+        if(resp.status==1){
+          this.isCCRequest=this.false;
+        }else{
+          this.cashCollectionRequest = resp.data;
+        }
+      });
+      }, err => {
+        this.router.navigateByUrl('/menu');
+      });
+    
+    }
+  
+  
   
   //     let params ='delivery_boy_id=1';
   //   // this.deliveryBoyId = 1;//res[0].delivery_boy_id
@@ -67,8 +102,28 @@ export class TodayscollectionPage implements OnInit {
   //   });
   // }
   
-   logout(){
+  // cashCollection(values){
+  //     this.db.get('USER_INFO').then(res => {
+  //   let params= "payment_id"+"1"+"narration="+values.narration+"type="+values.type
+  //   +"enity_id="+values.entityId+"mode"+"cash"+"debit="+values.debit+"credit="+values.credit
+  //   +"balance="+values.balance+"credited_by="+values.creditedBy+"credited_at="+values.credited_at+"updated_by="+values.updatedBy+"deleted_by="+values.deletedBy
+  //   +"deleted_at="+values.deletedAt+"is_deleted="+values.is_deleted;
+  //   this.api.Get_Payment_Entry(params).subscribe(resp=>{
+  //     console.log(resp)
+  //     if(resp.status==1){
+  //       this.isCCRequest=this.false;
+  //     }else{
+  //       this.cashCollectionRequest = resp.data;
+  //     }
+  //   });
+  //   }, err => {
+  //     this.router.navigateByUrl('/menu');
+  //   });
+    
+ 
+  
+    
+  logout(){
     this.auth.logout();
   }
 }
-  

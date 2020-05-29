@@ -1,9 +1,9 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
+        <ion-buttons slot="start" class="back">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>profile</ion-title>
+        <ion-title class="title">profile</ion-title>
         <ion-buttons slot="end">
             <ion-button icon-only (click)="logout()" fill="clear">
                 <ion-icon name="log-out"></ion-icon>
@@ -15,15 +15,15 @@
 <ion-content>
     <ion-card class="center-card" *ngFor="let profile of profiles">
         <!-- <ion-list> -->
-        <ion-item>
+        <ion-item class="text">
             <ion-toggle slot="end" class="statusToggle" checked="{{deliveryBoyStatus}}" (click)="updateStatus()"></ion-toggle>
         </ion-item>
-        <ion-item>
-            <ion-icon name="person" slot="start"></ion-icon>
+        <ion-item class="text">
+            <ion-icon  class="text" name="person" slot="start"></ion-icon>
             {{profile.delivery_boy_name}}
         </ion-item>
-        <ion-item>
-            <ion-icon name="phone-portrait" slot="start"></ion-icon>
+        <ion-item class="text">
+            <ion-icon class="text" name="phone-portrait" slot="start"></ion-icon>
             {{profile.delivery_boy_phone}}
         </ion-item>
         <ion-row>

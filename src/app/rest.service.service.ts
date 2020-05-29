@@ -62,11 +62,84 @@ import { error } from 'util';
       catchError(this.handleError)
     );
   };
-  change_User_password(params) {
+  Change_User_password(params) {
     return this.http.post<any>(this.baseUrl+'/update_user_password',params,this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)
     );
   };
+  Payment_detail(params) {
+    return this.http.post<any>(this.baseUrl+'/add_payment_detail',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Add_Payment(params) {
+    return this.http.post<any>(this.baseUrl+'/add_payment',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Get_Payment_detail_by_payment(params) {
+    return this.http.post<any>(this.baseUrl+'/get_payment_detail_by_payment',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Get_Payment_Entry(params){
+    return this.http.post<any>(this.baseUrl+'/get_payment',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Get_Delivery_boy_stocks(params){
+    return this.http.post<any>(this.baseUrl+'/get_deliveryboy_stocks',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Add_Order(params){
+    return this.http.post<any>(this.baseUrl+'/add_order',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+
+  Get_Load_Stocks(params){
+    return this.http.post<any>(this.baseUrl+'/get_load_stocks',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Get_Deliveries(params){
+    return this.http.post<any>(this.baseUrl+'/get_deliveries',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Get_Orders(params){
+    return this.http.post<any>(this.baseUrl+'/get_orders',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+  Get_stocks(params){
+    return this.http.post<any>(this.baseUrl+'/get_stocks',params,this.httpOptions)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    );
+  };
+ 
+
   }

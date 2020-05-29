@@ -16,6 +16,7 @@ import { Storage } from '@ionic/storage';
 
 export class AppComponent {
   navigate:any;
+  authService: any;
   
   constructor(
     private platform: Platform,
@@ -50,7 +51,7 @@ export class AppComponent {
           },
           {  
             title : "Todays Cash Collection",
-            url   : "/todayscashcollection",
+            url   : "/todayscollection",
             icon  : "cash" 
           },
           {
@@ -78,5 +79,9 @@ export class AppComponent {
       });
       
     }
+    
+  logout() {
+    this.authService.logout();
+  }
 
   }

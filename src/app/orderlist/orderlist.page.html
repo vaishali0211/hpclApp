@@ -18,20 +18,23 @@
     </ion-card>
     <ion-card color="primary" *ngFor="let order of orderlist">
         <!-- <ion-card-content> -->
-        <ion-item>
-            <ion-label>
+        <!-- <ion-item> -->
+            <ion-label> 
                 <ion-col>
-                    <h5>filled</h5>
-                    {{order.filled}}
+                    <!-- <h5>filled</h5> -->
+                   <h5> {{order.filled}}</h5>
+                   <h5>{{order.empty}}</h5> 
+                   <h5>{{order.defult}}</h5> 
+                   <h5>{{order.type}}</h5> 
                 </ion-col>
-            </ion-label>
-            <ion-label>
+            </ion-label> 
+            <!-- <ion-label>
                 <ion-col>
                     <h5>Empty</h5>
                     {{order.empty}}
                 </ion-col>
-            </ion-label>
-            <ion-label>
+            </ion-label> -->
+            <!-- <ion-label>
                 <ion-col>
                     <h5>Defult</h5>
                     {{order.defult}}
@@ -42,8 +45,8 @@
                     <h5>Type</h5>
                     {{order.type}}
                 </ion-col>
-            </ion-label>
-        </ion-item>
+            </ion-label> -->
+        <!-- </ion-item> -->
     </ion-card>
     <!-- <ion-row>
             <ion-col size="12"> -->

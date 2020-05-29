@@ -3,9 +3,11 @@ import { AuthenticationService } from '../services/authentication.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx'
 import { DeliveryDetailsPage } from '../delivery-details/delivery-details.page';
+import { restService } from '../rest.service.service';
+import {Storage} from '@ionic/storage';
 
 
 @Component({
@@ -17,6 +19,7 @@ import { DeliveryDetailsPage } from '../delivery-details/delivery-details.page';
 export class AddorderPage implements OnInit {
   addOrder_form: FormGroup;
   currentImage: string;
+  order: string;
  
   constructor(
     public formBuilder: FormBuilder, 
@@ -25,6 +28,11 @@ export class AddorderPage implements OnInit {
     public alert: AlertController,
     public router: Router,
     public modal: ModalController,
+    public api: restService,
+    public activeRoute: ActivatedRoute,
+    public db: Storage
+
+
     // public navCtrl: NavController, 
     // public navParams: NavParams
     // public toastCtrl: ToastController, 
@@ -140,20 +148,30 @@ export class AddorderPage implements OnInit {
     ],
   };
 
-  logout(){
-    this.auth.logout();
-  } 
-
+ 
   submitForm(values) {
-    console.log(values);
-    let params = "name=" + values.name
-      + "&phone=" + values.phone
-      + "&consumer_no=" + values.consumer_no
-      + "&address_1=" + values.address_1
-      + "&address_2=" + values.addres_2
-      + "&area=" + values.area
-      + "&subsidy_consume=" + values.subsidy_consume
-      + "&kg_cylinder_rs=" + values.kg_cylinder_rs;
+    this.order=this.activeRoute.snapshot.paramMap.get("type");
+    console.log(this.order);
+    this.db.get('USER_INFO').then(res => {
+    let params = "customer_id=" + values.customer_id
+      + "&product_id="+ values.product_id
+      + "&product_attribute_id="+ values.product_attribute_id
+      + "&created_by="+ values.created_by
+      + "&dnt="+ values.dnt;
+      this.api.Add_Order(params).subscribe(res=>{
+        console.log(res)
+        if(res.status==1) {
+          alert(res.message);
+      } else if(res.success == true) {
+         this.router.navigate(['/menu']);
+      } else {
+        alert(res.message);
+      }
+    }) ;
+  })
+
+  
+  
       // this. addOrder=(this.Consumer_no, this.name, this.address_1, this.address_2, this.kg_cylinder_rs, this.area, this.phone, this.subsidy_consumer).subscribe(res => {
       //   if(res.status == '1'){
       //     this.navigate(res.data.submit)
@@ -195,4 +213,8 @@ export class AddorderPage implements OnInit {
     });
     return await modal.present();
   }
+  logout(){
+    this.auth.logout();
+  } 
+
 }

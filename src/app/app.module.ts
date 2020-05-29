@@ -13,7 +13,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
-import { CallNumber } from '@ionic-native/call-number/ngx';
+import { CallNumber } from '@ionic-native/call-number';
 import { DeliveryDetailsPage } from './modal/delivery-details/delivery-details.page';
 import { Camera } from '@ionic-native/camera/ngx';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,8 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     DatePipe,
     AuthGuardService,
     AuthenticationService,
-  LaunchNavigator,
-  CallNumber,
+  // LaunchNavigator,
+  // CallNumber,
     Camera,
     DeliveryDetailsPage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

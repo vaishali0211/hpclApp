@@ -29,35 +29,20 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-        <!-- <ion-item>
-            <ion-label>Order</ion-label>
+        <form [formGroup]="addpayform" (ngSubmit)="submitForm(addpayform.value)">
+        <ion-item>
+            <ion-label position="floating" >amount</ion-label>
+            <ion-input formControlName="amount" type="amount"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>102</ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>205 </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>333 </ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>105</ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>305</ion-label>
-        </ion-item> -->
-        <ion-item>
-            <ion-label>amount</ion-label>
-        </ion-item>
-        <ion-item>
-            <ion-label>online</ion-label>
+            <ion-label>Online</ion-label>
             <ion-checkbox></ion-checkbox>
         </ion-item>
         <ion-item>
-            <ion-label>offline</ion-label>
+            <ion-label>Offline</ion-label>
             <ion-checkbox></ion-checkbox>
         </ion-item>
         <ion-button class="btn-unique" fill="clear" expand="block" fill="outline" shape="round" type="submit" routerLink="/menu">Sumbit</ion-button>
+        </form>
     </ion-card>
 </ion-content>
