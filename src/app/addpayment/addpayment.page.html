@@ -29,11 +29,18 @@
                 </ion-item>
             </ion-col>
         </ion-row>
-        <form [formGroup]="addpayform" (ngSubmit)="submitForm(addpayform.value)">
+        <form [formGroup]="addpayform" class="addpayForm" (ngSubmit)="onSubmit()">
         <ion-item>
             <ion-label position="floating" >amount</ion-label>
             <ion-input formControlName="amount" type="amount"></ion-input>
         </ion-item>
+        <div class="addpayform-errors">
+            <ng-container *ngFor="let add of addpayform_messages.amount">
+                <div class="error-message" *ngIf="addpayform.get('amount').hasError(add.type) && (addpayform.get('amount').dirty || addpayform.get('amount').touched)">
+                    <ng-container name="information-circle-outline"></ng-container> {{ add.message }}
+                </div>
+            </ng-container>
+        </div>
         <ion-item>
             <ion-label>Online</ion-label>
             <ion-checkbox></ion-checkbox>
@@ -42,7 +49,7 @@
             <ion-label>Offline</ion-label>
             <ion-checkbox></ion-checkbox>
         </ion-item>
-        <ion-button class="btn-unique" fill="clear" expand="block" fill="outline" shape="round" type="submit" routerLink="/menu">Sumbit</ion-button>
+        <ion-button class="btn-unique" fill="clear" expand="block" fill="outline" shape="round" type="submit">Sumbit</ion-button>
         </form>
     </ion-card>
 </ion-content>

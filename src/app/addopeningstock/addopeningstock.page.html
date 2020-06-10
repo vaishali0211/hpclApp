@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <h4>Add opening stock</h4>
+        <h4 class="main">Add opening stock</h4>
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
@@ -12,7 +12,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <form [formGroup]='addOpening_form' (ngSubmit)="Onsubmit(addOpening_form.value)">
+    <form [formGroup]="addOpening_form" (ngSubmit)="onSubmit(addOpening_form.value)">
     <ion-card class="center-card">
         <ion-item>
             <ion-label>Type of cylinder </ion-label>

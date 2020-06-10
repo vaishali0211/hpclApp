@@ -13,13 +13,14 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-card class="center" color="primary" *ngFor="let delivery of todayDelivery">
+    <ion-card class="center" color="primary" *ngFor="let delivery of todayDelivery;let i=index">
         <ion-card-content>
             <!-- <ion-list> -->
             <ion-item>
                 <ion-row>
                     <ion-label>
                         <h3>con_no</h3>
+                        <!-- <input [(ngModel)]="delivery.con_no" type="number"/> -->
                        <h3>{{delivery.con_no}}</h3> 
                     </ion-label>
                 </ion-row>

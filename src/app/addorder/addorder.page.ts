@@ -20,7 +20,7 @@ export class AddorderPage implements OnInit {
   addOrder_form: FormGroup;
   currentImage: string;
   order: string;
- 
+ touched:boolean;
   constructor(
     public formBuilder: FormBuilder, 
     private camera: Camera,
@@ -149,15 +149,17 @@ export class AddorderPage implements OnInit {
   };
 
  
-  submitForm(values) {
+  onSubmit(values):void {
+    console.log(this.addOrder_form.touched);
+    console.log(this.addOrder_form.value)
     this.order=this.activeRoute.snapshot.paramMap.get("type");
     console.log(this.order);
     this.db.get('USER_INFO').then(res => {
-    let params = "customer_id=" + values.customer_id
-      + "&product_id="+ values.product_id
-      + "&product_attribute_id="+ values.product_attribute_id
-      + "&created_by="+ values.created_by
-      + "&dnt="+ values.dnt;
+    let params = "customer_id="+values.customer_id
+      + "&product_id="+values.product_id
+      + "&product_attribute_id="+values.product_attribute_id
+      + "&created_by="+values.created_by
+      + "&dnt="+values.dnt;
       this.api.Add_Order(params).subscribe(res=>{
         console.log(res)
         if(res.status==1) {

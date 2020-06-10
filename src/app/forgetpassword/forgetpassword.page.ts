@@ -13,7 +13,7 @@ export class ForgetpasswordPage implements OnInit {
 
   forgetpassword_form: FormGroup;
   forgotPassword: any;
-
+  touched:boolean;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -23,6 +23,7 @@ export class ForgetpasswordPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.forgetpassword_form = this.formBuilder.group({
       enter_phone: new FormControl('', Validators.compose([
         Validators.required, 
@@ -37,7 +38,10 @@ validation_messages = {
     {type: 'pattern', message: 'Enter 10 digit phone number.'},
   ]
 }
-onSubmit(values){
+onSubmit(values): void{
+  console.log(this.forgetpassword_form.touched);
+  console.log(this.forgetpassword_form.value);
+  console.log(this.forgetpassword_form);
   let params= "delivery_boy_phone="+values.enter_phone;
   this.forgotPassword(params).subscribe(res => {
     if(res.status == '1'){

@@ -15,7 +15,7 @@ import {Storage} from '@ionic/storage';
 export class AddpaymentPage implements OnInit {
   addpayform: FormGroup;
    payment: any;
-
+touched:boolean;
   constructor(
     public formBuilder: FormBuilder ,
     public auth: AuthenticationService,
@@ -26,26 +26,32 @@ export class AddpaymentPage implements OnInit {
     public db: Storage
 
 
-  ) {
+  ) { }
+  
+  ngOnInit() {
     this.addpayform = this.formBuilder.group({
       amount: new FormControl('', Validators.compose([
         Validators.required,
       ])),
     });
   }
-    validation_messages = {
+    addpayform_messages = {
             'amount': [
               { type: 'required', message: 'Name is required!'}
             ],
-      
-       }
+   
   
-  ngOnInit() {
+  }
+  onSubmit(value): void{
+    console.log(this.addpayform.touched);
+    console.log(this.addpayform.value);
+    if(this.addpayform.valid){
+      console.log(this.addpayform);
     this.payment=this.activeRoute.snapshot.paramMap.get("type");
     console.log(this.payment);
     this.db.get('USER_INFO').then(res => {
-      let params ="narration="+"payment"+"type"+"Out"+"entity_id"+"1"
-      +"mode"+"cash"+"credit"+""+"created_by"+"10"+"debit"+"100000"+"balance"+"150000";
+      let params ="narration="+"payment"+"type="+"Out"+"entity_id="+"1"
+      +"mode="+"cash"+"credit="+""+"created_by="+"10"+"debit="+"100000"+"balance="+"150000";
       this.api.Add_Payment(params).subscribe(res=>{
         console.log(res)
         if(res.status==1) {
@@ -57,7 +63,15 @@ export class AddpaymentPage implements OnInit {
       }
     }) ;
   })
-  
+  }else{
+    let key = Object.keys(this.addpayform.controls);
+      key.filter(data=>{
+        let control = this.addpayform.controls[data];
+        if( control.errors !=null){
+          control.markAsTouched();
+        }
+      })
+    }
   }
   
 

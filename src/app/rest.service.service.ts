@@ -10,8 +10,12 @@ import { error } from 'util';
 
 // export class Rest.ServiceService {
   export class restService {
+  todayDelivery() {
+    throw new Error("Method not implemented.");
+  }
 
   baseUrl ='http://27.0.49.226/hpcl/api';
+  gettodayDelivery: any;
 
   constructor(private http: HttpClient) { }
   httpOptions = {

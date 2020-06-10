@@ -25,8 +25,7 @@ export class ChanepasswordPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.phone = this.activatedRoute.snapshot.paramMap.get('phone');
-    // console.log(this.phone);
+    
     this.changepassword_form = this.formBuilder.group({
       old_password: new FormControl('', Validators.compose([
         Validators.required, 
@@ -58,7 +57,10 @@ export class ChanepasswordPage implements OnInit {
     ]
   }
 
-  onSubmit(values){
+  onSubmit(values):void{
+  console.log(this.changepassword_form.touched);
+  console.log(this.changepassword_form.value);
+  console.log(this.changepassword_form);
     let params = "user_id="+"10"+"&old_password="+values.oldPassword+"&new_password="+values.newPassword+"&confirm_password="+values.confirmPassword;
     this.api.Change_User_password(params).subscribe(res => {
       console.log(res);

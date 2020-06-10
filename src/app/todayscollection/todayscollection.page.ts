@@ -32,38 +32,35 @@ export class TodayscollectionPage implements OnInit {
    public db: Storage,
    public activeRoute: ActivatedRoute,
    private http: HttpClient
-  ) { }
-  //   this.listcashcollection=[{
-  //     consumer_no:' 24563' ,kg_cylinder:'14.5',amount:'750',location:'virar'
-  //    },
-  //    {
-  //      consumer_no:' 23420' ,kg_cylinder:'15.5',amount:'850',location:'virar'
-  //    },
-  //    {
-  //      consumer_no:' 21555' ,kg_cylinder:'16.5',amount:'950',location:'virar'
-  //    },
-  //    {
-  //      consumer_no:' 23556' ,kg_cylinder:'16.5',amount:'950',location:'virar'
-  //    },
-  //    {
-  //      consumer_no:' 20256' ,kg_cylinder:'16.5',amount:'950',location:'virar'
-  //    },
-  //    {
-  //      consumer_no:' 24568' ,kg_cylinder:'13.5',amount:'750',location:'virar'
-  //    }];
-  //  };
+  ) {
+    this.listcashcollection=[{
+      consumer_no:' 24563' ,kg_cylinder:'14.5',amount:'750',location:'virar'
+     },
+     {
+       consumer_no:' 23420' ,kg_cylinder:'15.5',amount:'850',location:'virar'
+     },
+     {
+       consumer_no:' 21555' ,kg_cylinder:'16.5',amount:'950',location:'virar'
+     },
+     {
+       consumer_no:' 23556' ,kg_cylinder:'16.5',amount:'950',location:'virar'
+     },
+     {
+       consumer_no:' 20256' ,kg_cylinder:'16.5',amount:'950',location:'virar'
+     },
+     {
+       consumer_no:' 24568' ,kg_cylinder:'13.5',amount:'750',location:'virar'
+     }];
+   };
   
-
-  ngOnInit() {
+   
     
-
+  ngOnInit() {
     // this.db.get('USER_INFO').then(res => {
     //  this.deliveryBoyId=res[0].delivery_boy_id;
-    
-
-  // this.todaycashcollection=this.activeRoute.snapshot.paramMap.get("type");
-  //   console.log(this.todaycashcollection);
-    this.db.get('USER_INFO').then(res => {
+  this.todaycashcollection=this.activeRoute.snapshot.paramMap.get("type");
+    console.log(this.todaycashcollection);
+      this.db.get('USER_INFO').then(res => {
       let params= "payment_id"+"1"+"narration"+"Payment"+"type"+"Out"
       +"enity_id"+"1"+"mode"+"cash"+"debit"+"120000.000"+"credit"+" "
       +"balance"+"170000.000"+"credited_by"+"10"+"credited_at"+"2020-03-17 06:59:29"
@@ -84,45 +81,7 @@ export class TodayscollectionPage implements OnInit {
     }
   
   
-  
-  //     let params ='delivery_boy_id=1';
-  //   // this.deliveryBoyId = 1;//res[0].delivery_boy_id
-  //   // let params ='delivery_boy_id='+this.deliveryBoyId;
-  //     // let params = "delivery_boy_phone="+values.phone+"&delivery_boy_pass="+values.password+"&device_id=null";
-  //     this.todayCashCollection(params).subscribe(resp => {
-  //       console.log(resp)
-  //       if(resp.status == 0){
-  //         this.isCCRequest=false;
-  //       }else{
-  //         this.cashCollectionRequest = resp.data;
-  //       }
-  //     });
-  //   }, err => {
-  //     this.router.navigateByUrl('/login-form');
-  //   });
-  // }
-  
-  // cashCollection(values){
-  //     this.db.get('USER_INFO').then(res => {
-  //   let params= "payment_id"+"1"+"narration="+values.narration+"type="+values.type
-  //   +"enity_id="+values.entityId+"mode"+"cash"+"debit="+values.debit+"credit="+values.credit
-  //   +"balance="+values.balance+"credited_by="+values.creditedBy+"credited_at="+values.credited_at+"updated_by="+values.updatedBy+"deleted_by="+values.deletedBy
-  //   +"deleted_at="+values.deletedAt+"is_deleted="+values.is_deleted;
-  //   this.api.Get_Payment_Entry(params).subscribe(resp=>{
-  //     console.log(resp)
-  //     if(resp.status==1){
-  //       this.isCCRequest=this.false;
-  //     }else{
-  //       this.cashCollectionRequest = resp.data;
-  //     }
-  //   });
-  //   }, err => {
-  //     this.router.navigateByUrl('/menu');
-  //   });
-    
- 
-  
-    
+     
   logout(){
     this.auth.logout();
   }

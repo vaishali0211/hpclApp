@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Order List</ion-title>
+        <ion-title class="main">Order List</ion-title>
         <ion-buttons slot="end">
             <ion-button icon-only (click)="logout()">
                 <ion-icon name="log-out" fill="clear"></ion-icon>
@@ -18,23 +18,20 @@
     </ion-card>
     <ion-card color="primary" *ngFor="let order of orderlist">
         <!-- <ion-card-content> -->
-        <!-- <ion-item> -->
+        <ion-item>
             <ion-label> 
                 <ion-col>
-                    <!-- <h5>filled</h5> -->
-                   <h5> {{order.filled}}</h5>
-                   <h5>{{order.empty}}</h5> 
-                   <h5>{{order.defult}}</h5> 
-                   <h5>{{order.type}}</h5> 
+                    <h5>filled</h5>
+                   <h5> {{order.filled}}</h5> 
                 </ion-col>
             </ion-label> 
-            <!-- <ion-label>
+            <ion-label>
                 <ion-col>
                     <h5>Empty</h5>
                     {{order.empty}}
                 </ion-col>
-            </ion-label> -->
-            <!-- <ion-label>
+            </ion-label>
+            <ion-label>
                 <ion-col>
                     <h5>Defult</h5>
                     {{order.defult}}
@@ -45,12 +42,13 @@
                     <h5>Type</h5>
                     {{order.type}}
                 </ion-col>
-            </ion-label> -->
-        <!-- </ion-item> -->
-    </ion-card>
-    <!-- <ion-row>
-            <ion-col size="12"> -->
-    <!-- </ion-col> -->
-    <!-- </ion-card-content> -->
-    <ion-button class="btn" color="light" fill="outline" shape="round" expand="block" type="submit" routerLink="/menu">Submit</ion-button>
+            </ion-label>
+         </ion-item>
+    <!-- <ion-row> -->
+         
+</ion-card>
+<ion-col size="12">
+    <ion-button class="btn" color="light" fill="outline" shape="round" expand="block" type="submit">Submit</ion-button>
+</ion-col>
+<!-- </ion-card-content> -->
 </ion-content>

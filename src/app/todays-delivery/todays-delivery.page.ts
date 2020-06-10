@@ -7,6 +7,7 @@ import { AlertController, ActionSheetController, NavController, ModalController 
 import { DeliveryDetailsPage } from '../delivery-details/delivery-details.page';
 import { restService } from '../rest.service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -16,9 +17,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./todays-delivery.page.scss'],
 })
 export class TodaysDeliveryPage implements OnInit {
-  
-  todayDelivery: any;
+  touched:boolean;
   userId: any;
+  todayDelivery:any;
+  deliveries: any;
+  delivery_boy_stock_id: string;
   
 
   constructor(
@@ -32,26 +35,47 @@ export class TodaysDeliveryPage implements OnInit {
     public modal: ModalController,
     public router: Router,
     public api: restService,
-    public activeRoute: ActivatedRoute,
-
+    public activeRoute: ActivatedRoute, 
+    public httpClient: HttpClient
   ) { 
-  //   this.todayDelivery = 
-  // [{ con_no:'21356', cust_name: 'Neel Jain',phone: '9999999990'},
-  // { con_no:'12356',  cust_name: 'Bhart Singh', phone: '9865231452'},
-  // { con_no:'12357',  cust_name: 'sita pawar', phone: '9865231234'},
-  // { con_no:'12563',  cust_name:'Indu varma', phone: '9863698524'}];
-  }
+    
+    this.todayDelivery = 
+  [{ con_no:'21356', cust_name: 'Neel Jain',phone: '9999999990'},
+  { con_no:'12356',  cust_name: 'Bhart Singh', phone: '9865231452'},
+  { con_no:'12357',  cust_name: 'sita pawar', phone: '9865231234'},
+  { con_no:'12563',  cust_name:'Indu varma', phone: '9863698524'}];
+  
 
-  ngOnInit() {
+  }
+      // $scope.delivery=[
+      //   {
+      //     con_no: "",
+      //     cust_name: "",
+      //     phone: ""
+      //   },
+      //   {
+      //     con_no: "",
+      //     cust_name: "",
+      //     phone: ""
+      //   },
+      //   {
+      //     con_no: "",
+      //     cust_name: "",
+      //     phone: ""
+      //   }
+      // ];
+
+     
+   ngOnInit():void {
+  //   console.log(this.todayDelivery);
     this.todayDelivery=this.activeRoute.snapshot.paramMap.get("type");
     console.log(this.todayDelivery);
     this.db.get('USER_INFO').then(res => {
-      // this.userId = res.user_id
-      let params = "userId"+"19"+"&deliveryboy_stock_id"+"1"+"dnt"+"1584109000"+"product_id"+"10"
-      +"product_attribute_id"+"1"+"delivery_id"+"1"+"mode"+"OUT"+"empty_new"+"1"+     
-       "empty_old"+"0"+"filled_new"+"9"+"filled_old"+"10"+"defective_new"+"0"+"defective_old"+"0"+
-      "created_at"+"2020-03-14 05:38:18"+"created_by"+"19"+"updated_at"+"2020-03-14 06:04:01"+"updated_by"+"19"+"deleted_at"+"2020-03-14 06:04:01"+
-      "deleted_by"+"10"+"is_deleted"+"0";
+      let params = "userId="+"19"+"&deliveryboy_stock_id="+"1"+"dnt="+"1584109000"+"product_id="+"10"
+      +"product_attribute_id="+"1"+"delivery_id="+"1"+"mode="+"OUT"+"empty_new="+"1"+     
+       "empty_old="+"0"+"filled_new="+"9"+"filled_old="+"10"+"defective_new="+"0"+"defective_old="+"0"+
+      "created_at="+"2020-03-14 05:38:18"+"created_by="+"19"+"updated_at="+"2020-03-14 06:04:01"+"updated_by="+"19"+"deleted_at="+"2020-03-14 06:04:01"+
+      "deleted_by="+"10"+"is_deleted="+"0";
       this.api.Get_Delivery_boy_stocks(params).subscribe(res=>{
         console.log(res)
         if(res.status==1) {
@@ -61,11 +85,21 @@ export class TodaysDeliveryPage implements OnInit {
       } else {
         alert(res.message);
       }
-    }) ;
+    });
   })
-
-  }
-
+// } else{
+//   let key = Object.keys(this.todayDelivery.controls);
+//   key.filter(data=>{
+//     let control = this.todayDelivery.controls[data];
+//     if( control.errors !=null){
+//       control.markAsTouched();
+//     }
+//   })
+// }
+ }
+//  continueToReview(index) {
+//   const selectedDelivery = this.todayDelivery[index];
+// }
   logout(){
     this.auth.logout();
   }
@@ -133,10 +167,19 @@ export class TodaysDeliveryPage implements OnInit {
     await alert.present();
   }
 
-  async openDetailsModal(order_no){
+  async openDetailsModal(deliverylist){
+    let entity_id = this.deliveries.entity_id;
+    this.api.Get_Delivery_boy_stocks('entity_id='+entity_id+"&delivery_boy_stock_id="+this.delivery_boy_stock_id).subscribe(async resp => {
+      deliverylist.consumerNumber = resp.consumer_name;
+      deliverylist.consumerPhone = resp.consumer_phone;
+      deliverylist.consumerAdd1 = resp.consumer_1;
+
     const modal = await this.modal.create({
-      component: DeliveryDetailsPage
+      component: DeliveryDetailsPage,
+      componentProps: deliverylist,
+
     });
     return await modal.present();
+      });
   }
 }

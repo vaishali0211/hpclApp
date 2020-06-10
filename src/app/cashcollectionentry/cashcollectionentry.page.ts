@@ -4,6 +4,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { restService } from '../rest.service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cashcollectionentry',
@@ -21,7 +22,8 @@ export class CashcollectionentryPage implements OnInit {
     public alert: AlertController,
     public router: Router,
     public auth: AuthenticationService,
-    public api:restService
+    public api:restService,
+    private http: HttpClient
   ) { 
     this.cc_form = this.formBuilder.group({
       name: new FormControl('', Validators.compose([
@@ -32,17 +34,17 @@ export class CashcollectionentryPage implements OnInit {
   
     this.cashcollectionEntry=[
       {
-        consumer_no:'24536',
-        kg_cylinder:'14.5 kg'
+        // consumer_no:'24536',
+        // kg_cylinder:'14.5 kg'
     }],
     )
 }
-
   ngOnInit() {
-      let values=this.values;
-     let params = "payment_id="+"1"+"&detail_value="+values.detailValue+"&detail_title="+values.detailTitle+"&comment="+values.comment+
-     "created_at"+ "2020-05-19 12:02:14"+ "created_by"+"10"+"updated_at"+ "2020-05-19 12:02:14"+ "updated_by"+ "null"+
-      "deleted_at"+"null" +"deleted_by"+ "null"+ "is_deleted"+"0";
+    console.log(this.cashcollectionEntry);
+    let values=this.values;
+    let params = "payment_id="+"1"+"&detail_value="+values.detailValue+"&detail_title="+values.detailTitle+"&comment="+values.comment+
+    "created_at="+"2020-05-19 12:02:14"+"created_by="+"10"+"updated_at="+"2020-05-19 12:02:14"+"updated_by="+ "null"+
+      "deleted_at="+"null"+"deleted_by="+"null"+"is_deleted="+"0";
     this.api.  Get_Payment_detail_by_payment(params).subscribe(res => {
       console.log(res);
       if(res.success == 1){

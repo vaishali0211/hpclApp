@@ -22,7 +22,7 @@ export class EditprofilePage implements OnInit {
   editprofiles = [{
     report_manager:'Mahesh Pawar',delivery_area:'Nalasopara'
   }];
-
+touched:boolean;
   db: any;
   dummyprofile: any;
   
@@ -39,11 +39,6 @@ export class EditprofilePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.db.get('USER_INFO').then(res => {
-    //   this.profile = res[0].user;
-    // })
-    
-  
     this.editProfile = this.formBuilder.group({
       name: new FormControl('', Validators.compose([
         Validators.required,
@@ -85,7 +80,24 @@ export class EditprofilePage implements OnInit {
 
   
 
-  submitForm(values) {
+  onSubmit(values) {
+    console.log(this.editProfile.touched);
+    console.log(this.editProfile.value)
+    let params = "first_name="+values.first_name+"&username="+values.username+"&email="+values.first_name+"&contact_no="+values.contact_no+"&profile_image"+values.profile_image+"&profilee_summary"+values.profile_summary+"&last_name="+values.last_name+"&user_id"+values.user_id+"&updated_by"+values.updated_by;
+    let userprofile:any;
+    this.api.User_profile_Update(params).subscribe(res => {
+      console.log(res);
+        if(res.success == 0){
+          alert(res.message);
+        } else if(res.success == true) {
+          this.router.navigate(['/menu']);
+        } else {
+          alert(res.message);
+        }
+      }) 
+    }
+  
+
     // let params = "delivery_boy_id=1";
     // this.dummyprofile(params).subscribe(res => {
     //   if(res.status == '0'){
@@ -94,7 +106,7 @@ export class EditprofilePage implements OnInit {
     //     this.navigate();
     //   }
     // }) 
-  }
+  
   
      
   logout(){
