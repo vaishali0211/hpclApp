@@ -68,6 +68,7 @@ export class LoginPage implements OnInit {
     ],
   };
 
+
   // Onsubmit(values) {
     Onsubmit(values) {
       let params = "email="+values.email+"&password="+values.password;
@@ -157,3 +158,6 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 }
+
+
+
